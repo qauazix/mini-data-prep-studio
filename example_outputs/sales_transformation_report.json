@@ -1,0 +1,102 @@
+{
+  "timestamp": "2026-03-29 23:58:08",
+  "source_file": "sales_data_sample.csv",
+  "final_shape": {
+    "rows": 2823,
+    "columns": 23
+  },
+  "column_names": [
+    "ORDERNUMBER",
+    "QUANTITYORDERED",
+    "PRICEEACH",
+    "ORDERLINENUMBER",
+    "SALES",
+    "ORDERDATE",
+    "STATUS",
+    "QTR_ID",
+    "MONTH_ID",
+    "YEAR_ID",
+    "PRODUCTLINE",
+    "MSRP",
+    "PRODUCTCODE",
+    "CUSTOMERNAME",
+    "PHONE",
+    "ADDRESSLINE1",
+    "CITY",
+    "POSTALCODE",
+    "COUNTRY",
+    "TERRITORY",
+    "CONTACTLASTNAME",
+    "CONTACTFIRSTNAME",
+    "DEALSIZE"
+  ],
+  "transformations_applied": [
+    {
+      "timestamp": "2026-03-29 23:50:24",
+      "operation": "type_conversion",
+      "parameters": {
+        "column": "ORDERDATE",
+        "target_type": "datetime",
+        "format": "",
+        "clean_numeric_first": true
+      },
+      "affected_columns": [
+        "ORDERDATE"
+      ]
+    },
+    {
+      "timestamp": "2026-03-29 23:51:48",
+      "operation": "missing_values",
+      "parameters": {
+        "action": "Drop columns above missing threshold",
+        "columns": [
+          "ADDRESSLINE2",
+          "STATE"
+        ],
+        "threshold": 50,
+        "constant": null,
+        "before_shape": [
+          2823,
+          25
+        ],
+        "after_shape": [
+          2823,
+          23
+        ]
+      },
+      "affected_columns": [
+        "ADDRESSLINE2",
+        "STATE"
+      ]
+    },
+    {
+      "timestamp": "2026-03-29 23:52:27",
+      "operation": "categorical_tools",
+      "parameters": {
+        "standardize_columns": [
+          "STATUS"
+        ],
+        "standardize_action": "Title Case",
+        "mapping_column": "",
+        "rare_group_column": "",
+        "rare_threshold": null,
+        "one_hot_columns": []
+      },
+      "affected_columns": [
+        "STATUS"
+      ]
+    },
+    {
+      "timestamp": "2026-03-29 23:53:20",
+      "operation": "validation_rule",
+      "parameters": {
+        "rule_type": "Numeric range check",
+        "column": "SALES",
+        "violation_count": 0
+      },
+      "affected_columns": [
+        "SALES"
+      ]
+    }
+  ]
+}

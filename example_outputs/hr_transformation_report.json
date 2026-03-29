@@ -1,0 +1,61 @@
+{
+  "timestamp": "2026-03-29 23:22:30",
+  "source_file": "HR_capstone_dataset.csv",
+  "final_shape": {
+    "rows": 11991,
+    "columns": 10
+  },
+  "column_names": [
+    "satisfaction_level",
+    "last_evaluation",
+    "number_project",
+    "average_montly_hours",
+    "time_spend_company",
+    "Work_accident",
+    "left",
+    "promotion_last_5years",
+    "Department",
+    "salary"
+  ],
+  "transformations_applied": [
+    {
+      "timestamp": "2026-03-29 23:15:21",
+      "operation": "duplicates",
+      "parameters": {
+        "subset_columns": [],
+        "keep": "first",
+        "rows_removed": 3008
+      },
+      "affected_columns": []
+    },
+    {
+      "timestamp": "2026-03-29 23:16:37",
+      "operation": "categorical_tools",
+      "parameters": {
+        "standardize_columns": [
+          "Department"
+        ],
+        "standardize_action": "Title Case",
+        "mapping_column": "",
+        "rare_group_column": "",
+        "rare_threshold": null,
+        "one_hot_columns": []
+      },
+      "affected_columns": [
+        "Department"
+      ]
+    },
+    {
+      "timestamp": "2026-03-29 23:21:53",
+      "operation": "validation_rule",
+      "parameters": {
+        "rule_type": "Numeric range check",
+        "column": "satisfaction_level",
+        "violation_count": 0
+      },
+      "affected_columns": [
+        "satisfaction_level"
+      ]
+    }
+  ]
+}
